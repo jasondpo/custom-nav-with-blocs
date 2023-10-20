@@ -1,0 +1,383 @@
+:root{
+    --blazer-red:#CF372C; /* Hovered links and active links */
+    --sky-blue:#5C94F2;
+    --tabTextColor:#444; /* Main Tabs Hovered */
+    --dropdownLinkNormal:#555; /* Normal State */
+    --dropdownLinkHover:#000; /* Normal State */
+    --dropdownTextColor:#000; /* Used on Tabs when scrolled */
+    --tabTextColorScrolled:#16325c;
+    --tabArrowColorScrolled:#b1bccc;
+    --overlay:rgba(0,0,0,.6);
+    --bkgColorNeutral:#EAEAEA;
+    --white:#fff;
+
+    /*Topic colors*/
+    --mv-color:#c0b376;
+    --license-color:#29910d;
+    --voter-color:#BF0e3f;
+    --chat-color: #bbbbbb;
+}
+
+/** Global, but should be specific to this bloc **/
+
+.show{
+    display: block !important;
+}
+.tab-overlay{
+	position: fixed;
+	z-index: 2;
+	left:0;
+	right:0;
+	bottom:0;
+	top:0;
+    background-color:var(--overlay);
+	backdrop-filter: blur(3px);
+	display:none;
+}
+/** /Global, but should be specific to this bloc **/
+
+
+/*** Tabs ***/
+
+
+
+.nav-tab-btn-text{
+    color:var(--white);
+}
+.tab-nav-house-icon{
+    color: var(--white);
+}
+
+/* JS triggered after scrolled: Also applied to "active-tab" */
+.light-tab-text li p{ 
+    color: var(--white);
+}
+.light-tab-text li .tab-down-arrow{ 
+    color: var(--white);
+}
+.light-tab-text{ 
+    color: var(--white);
+}
+/*  */
+.dark-tab-text li p{ 
+    color: var(--tabTextColorScrolled);
+}
+.dark-tab-text li .tab-down-arrow{ 
+    color: var(--tabArrowColorScrolled);
+}
+.dark-tab-text{ 
+    color: var(--tabTextColorScrolled);
+}
+/* JS triggered after scrolled: Also applied to "active-tab" */
+
+.tab-hovered{ /* JS triggered */
+    background-color: var(--bkgColorNeutral) !important;
+}
+
+.tab-hovered .ion-android-arrow-dropdown{
+    transform: rotate(180deg);
+}
+
+.tab-hovered .tab-down-arrow, .tab-hovered .tab-nav-house-icon, .tab-hovered p{ /* JS triggered */
+    color: var(--tabTextColor) !important;
+}
+
+
+.active-tab p{ /* Manually applied */
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    color: var(--white);
+}
+.active-tab .tab-nav-house-icon{
+    color: var(--white);
+}
+.active-tab .tab-nav-house-icon::after{
+    content: "";
+    position: absolute;
+    left:calc(50% + 2px);
+    transform: translateX(-50%);
+    bottom:14px;
+    width: 20px;
+    display: inline-block;
+    border-bottom: 1px solid var(--white);
+}
+.nav-tab-btn-text, .icon-sm{
+    pointer-events: none;
+}
+/*** /Tabs ***/
+
+
+
+/*** Dropdowns ***/
+.nav-container{
+    height: 50px;
+    overflow: hidden;
+    transition: height .25s ease-in-out; 
+}
+.nav-container-reveal{
+    height: 280px;
+}
+.tab-col-list-col ul li{
+    margin-bottom: 15px;
+}
+.tab-col-list-col ul li p{
+	/* margin: 0 0 -8px 0 !important; */
+    margin: 0 0 -16px 0 !important;
+	padding: 0 0 0 0 !important;
+}
+.tab-col-list-col ul li p a{
+    cursor: pointer !important;
+    text-decoration: none !important;
+    color: var(--dropdownLinkNormal) !important;
+    font-size: 14px;
+    border-radius: 14px;
+    padding: 5px 0 5px 10px;
+}
+.tab-col-list-col ul li p a:hover{
+    cursor: pointer !important;
+    color: var(--dropdownLinkHover) !important;
+    transition: all .15s linear;
+    background-color: #fff !important;
+    border-radius: 14px;
+}
+.tab-col-list-col ul li p a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.nav-row-width{ /* Make relative. Use grid on its container (nav-container) to center. That way adding more content will push down on parent container */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: var(--bkgColorNeutral) !important;
+}
+/*** /Dropdowns ***/
+
+
+/*** Animations ***/
+.home-btn, .motor-vehicle-btn, .legal-btn, .voter-btn, .pub-btn, .about-btn, .chat-btn{
+    transition: all .15s linear;
+}
+
+.hide-nav-row {
+    visibility: hidden;
+    opacity: 0;
+}
+.reveal-row{
+    opacity: 0;
+    /* height: 50px; */
+    animation: revealRow .3s forwards;
+}
+
+.conceal-row{
+    opacity: 1;
+    /* overflow: visible;
+    height: auto !important; */
+    animation: concealRow .3s forwards;
+}
+
+
+@keyframes revealRow {
+    0% {
+        visibility: visible;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes concealRow {
+    0% {
+        visibility: visible;
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+/*** /Animations ***/
+
+/* 1163 - Below */
+@media only screen and (max-width: 1163px) { /* True for width below */
+    .nav-row-width{
+        width: calc(100% - 23px) !important;
+        margin: 0 auto;
+    }
+}
+/* 992 - Above */
+@media only screen and (min-width: 992px) {  /* True for width above */
+    .desktop-tabs-row{
+        display: block !important;
+    }
+}
+/* 767 - Above */
+@media only screen and (min-width: 767px) { /* True for width above */
+    .nav-container-scrolled{
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.2) 0px 1px 2px;
+        position: fixed;
+        top:0;
+        background: linear-gradient(to bottom,white 0px,white 50px,#EAEAEA 51px,#EAEAEA 400px);
+    }
+}
+/* 767 - Below - Mobile */
+@media only screen and (max-width: 767px) {  /* True for width below */
+    .nav-container{
+        overflow:initial !important;
+    }
+    .nav-row-width{ 
+        background-color: var(--sky-blue) !important;
+        border-top: 1px solid var(--bkgColorNeutral) !important;
+        width: calc(100% - 23px) !important;
+    }
+    .tab-col-list-col ul li p a{
+        color: white !important;
+    }
+    .nav-main-tabs-list{
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px !important;
+    }
+
+
+    .nav-tab-btn:hover{
+        background-color: var(--sky-blue) !important;
+    }
+    .tab-hovered{ /*make text white*/
+        background-color: var(--sky-blue) !important;
+    }
+    .tab-hovered p, .tab-hovered .tab-down-arrow{
+        color: white !important;
+    }
+
+
+    .nav-tab-btn:hover p, .nav-tab-btn:hover .tab-down-arrow, .nav-tab-btn:hover .tab-nav-house-icon{
+        color:white !important;
+    }
+    .tab-nav-house-icon{
+        color:var(--tabTextColor);
+    }
+    .nav-tab-btn-text{
+        color:var(--tabTextColor);
+    }
+    .tab-down-arrow{ 
+        color: var(--tabTextColor);
+    }
+    .nav-container{ /* Absolute fixed below 767 always */
+        position: absolute !important;
+    }
+    .active-tab{
+        background-color: var(--blazer-red);
+    }
+    .active-tab .tab-down-arrow{
+        color: white !important;
+    }
+    .mobile-btn-row{ /* Absolute fixed below 767 always */
+        position: absolute !important;
+        top:0px;
+    }
+    .desktop-tabs-row{
+        margin-top: 40px;
+    }
+    .mv-row{
+        top:140px;
+    }
+    .legal-row{
+        top:190px;
+    }
+    .voter-row{
+        top:240px;
+    }
+    .pub-row{
+        top:290px;
+    }
+    .chat-row{
+        top:390px;
+    }
+}
+
+
+
+
+
+
+/*** Hamburger menu btn ***/   
+.hamburger {
+    box-sizing: border-box;
+    padding: 15px 8px 8px 8px;
+    display: inline-block;
+    cursor: pointer;
+    transition-property: opacity, filter;
+    transition-duration: 0.15s;
+    transition-timing-function: linear;
+    font: inherit;
+    color: inherit;
+    text-transform: none;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    overflow: visible; }
+    .hamburger:hover {
+      opacity: 0.7; }
+    .hamburger.is-active:hover {
+      opacity: 0.7; }
+    .hamburger.is-active .hamburger-inner,
+    .hamburger.is-active .hamburger-inner::before,
+    .hamburger.is-active .hamburger-inner::after {
+      background-color: #000; }
+  
+  .hamburger-box {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    position: relative; }
+  
+  .hamburger-inner {
+    display: block;
+    top: 50%;
+    margin-top: -2px; }
+    .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+      width: 24px;
+      height: 3px;
+      background-color: var(--tabTextColor);
+      border-radius: 4px;
+      position: absolute;
+      transition-property: transform;
+      transition-duration: 0.15s;
+      transition-timing-function: ease; }
+    .hamburger-inner::before, .hamburger-inner::after {
+      content: "";
+      display: block; }
+    .hamburger-inner::before {
+      top: -8px; }
+    .hamburger-inner::after {
+      bottom: -8px; }
+  
+  /*
+     * Squeeze
+     */
+  .hamburger--squeeze .hamburger-inner {
+    transition-duration: 0.075s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19); }
+    .hamburger--squeeze .hamburger-inner::before {
+      transition: top 0.075s 0.12s ease, opacity 0.075s ease; }
+    .hamburger--squeeze .hamburger-inner::after {
+      transition: bottom 0.075s 0.12s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19); }
+  
+  .hamburger--squeeze.is-active .hamburger-inner {
+    transform: rotate(45deg);
+    transition-delay: 0.12s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+    .hamburger--squeeze.is-active .hamburger-inner::before {
+      top: 0;
+      opacity: 0;
+      transition: top 0.075s ease, opacity 0.075s 0.12s ease; }
+    .hamburger--squeeze.is-active .hamburger-inner::after {
+      bottom: 0;
+      transform: rotate(-90deg);
+      transition: bottom 0.075s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1); }
+  
+  /*
+/*** /Hamburger menu btn ***/   
+
