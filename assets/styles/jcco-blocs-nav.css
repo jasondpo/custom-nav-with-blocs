@@ -16,6 +16,12 @@
     --license-color:#29910d;
     --voter-color:#BF0e3f;
     --chat-color: #bbbbbb;
+
+    /*Dropdown Color Bars*/
+    --mv-color-bar: linear-gradient(to bottom,var(--mv-color) 0px,var(--mv-color) 6px,var(--bkgColorNeutral) 7px,var(--bkgColorNeutral) 400px);
+    --license-color-bar: linear-gradient(to bottom,var(--license-color) 0px,var(--license-color) 6px,var(--bkgColorNeutral) 7px,var(--bkgColorNeutral) 400px);
+    --voter-color-bar:linear-gradient(to bottom,var(--voter-color) 0px,var(--voter-color) 6px,var(--bkgColorNeutral) 7px,var(--bkgColorNeutral) 400px);
+    --chat-color-bar:linear-gradient(to bottom,var(--chat-color) 0px,var(--chat-color) 6px,var(--bkgColorNeutral) 7px,var(--bkgColorNeutral) 400px);
 }
 
 /** Global, but should be specific to this bloc **/
@@ -39,6 +45,18 @@
 
 /*** Tabs ***/
 
+.mv-color{
+    background-color: var(--mv-color) !important;
+}
+.license-color{
+    background-color: var(--license-color) !important;
+}
+.voter-color{
+    background-color: var(--voter-color) !important;
+}
+.chat-color{
+    background-color: var(--chat-color) !important;
+}
 
 
 .nav-tab-btn-text{
@@ -71,15 +89,20 @@
 /* JS triggered after scrolled: Also applied to "active-tab" */
 
 .tab-hovered{ /* JS triggered */
-    background-color: var(--bkgColorNeutral) !important;
+    /* background-color: var(--bkgColorNeutral) !important; */
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px; 
 }
 
 .tab-hovered .ion-android-arrow-dropdown{
     transform: rotate(180deg);
 }
 
-.tab-hovered .tab-down-arrow, .tab-hovered .tab-nav-house-icon, .tab-hovered p{ /* JS triggered */
-    color: var(--tabTextColor) !important;
+.tab-hovered .tab-down-arrow, 
+.tab-hovered .tab-nav-house-icon, 
+.tab-hovered p{ /* JS triggered */
+    /* color: var(--tabTextColor) !important; */
+    color: var(--white) !important;
 }
 
 
@@ -109,6 +132,20 @@
 
 
 /*** Dropdowns ***/
+.mv-color-bar{
+    background: var(--mv-color-bar) !important;
+}
+.license-color-bar{
+    background: var(--license-color-bar) !important;
+}
+.voter-color-bar{
+    background: var(--voter-color-bar) !important;
+}
+.chat-color-bar{
+    background: var(--chat-color-bar) !important;
+}
+
+
 .nav-container{
     height: 50px;
     overflow: hidden;
@@ -152,11 +189,26 @@
     width: 100%;
     background-color: var(--bkgColorNeutral) !important;
 }
+
+/* Change to square for scrolled and mobile*/
+.mv-row, 
+.legal-row, 
+.voter-row, 
+.pub-row, 
+.chat-row{ 
+    border-radius: 4px;
+}
 /*** /Dropdowns ***/
 
 
 /*** Animations ***/
-.home-btn, .motor-vehicle-btn, .legal-btn, .voter-btn, .pub-btn, .about-btn, .chat-btn{
+.home-btn, 
+.motor-vehicle-btn, 
+.legal-btn, 
+.voter-btn, 
+.pub-btn, 
+.about-btn, 
+.chat-btn{
     transition: all .15s linear;
 }
 
@@ -201,6 +253,8 @@
 }
 /*** /Animations ***/
 
+
+
 /* 1163 - Below */
 @media only screen and (max-width: 1163px) { /* True for width below */
     .nav-row-width{
@@ -208,21 +262,35 @@
         margin: 0 auto;
     }
 }
+
 /* 992 - Above */
-@media only screen and (min-width: 992px) {  /* True for width above */
+@media only screen and (min-width: 992px) {  
     .desktop-tabs-row{
         display: block !important;
     }
 }
+
 /* 767 - Above */
-@media only screen and (min-width: 767px) { /* True for width above */
+@media only screen and (min-width: 767px) { 
     .nav-container-scrolled{
         box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.2) 0px 1px 2px;
         position: fixed;
         top:0;
         background: linear-gradient(to bottom,white 0px,white 50px,#EAEAEA 51px,#EAEAEA 400px);
     }
+    .nav-container-scrolled .mv-row, 
+    .nav-container-scrolled .legal-row, 
+    .nav-container-scrolled .voter-row,  
+    .nav-container-scrolled .pub-row,  
+    .nav-container-scrolled .chat-row{ 
+        border-radius: 0;
+    }
+    .nav-container-scrolled .tab-hovered{ 
+        border-top-right-radius: 0;
+        border-top-left-radius: 0; 
+    }
 }
+
 /* 767 - Below - Mobile */
 @media only screen and (max-width: 767px) {  /* True for width below */
     .nav-container{
@@ -252,7 +320,9 @@
     }
 
 
-    .nav-tab-btn:hover p, .nav-tab-btn:hover .tab-down-arrow, .nav-tab-btn:hover .tab-nav-house-icon{
+    .nav-tab-btn:hover p, 
+    .nav-tab-btn:hover .tab-down-arrow, 
+    .nav-tab-btn:hover .tab-nav-house-icon{
         color:white !important;
     }
     .tab-nav-house-icon{

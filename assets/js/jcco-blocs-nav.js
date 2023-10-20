@@ -33,8 +33,8 @@ $("#home-row-btn").on('mouseover', function() {
 
 $('#mv-row-btn').on('mouseover', function() { 
     if($(motorRow).hasClass('hide-nav-row')) {
-        motorRow.removeClass("conceal-row").addClass("reveal-row");
-        motorRowBtn.addClass("tab-hovered");
+        motorRow.removeClass("conceal-row").addClass("reveal-row mv-color-bar");
+        motorRowBtn.addClass("tab-hovered mv-color");
     }else{
         motorRow.removeClass("reveal-row");
     }
@@ -43,18 +43,18 @@ $('#mv-row-btn').on('mouseover', function() {
 
 $('#legal-row-btn').on('mouseover', function() {
     if($(legalRow).hasClass('hide-nav-row')) {
-        legalRow.removeClass("conceal-row").addClass("reveal-row");
-        legalRowBtn.addClass("tab-hovered");
+        legalRow.removeClass("conceal-row").addClass("reveal-row license-color-bar");
+        legalRowBtn.addClass("tab-hovered license-color");
     }else{
-        legalRow.removeClass("reveal-row");
+        legalRow.removeClass("reveal-row license-color");
     }
     closeAllElse('legalRow');
 });
 
 $('#voter-row-btn').on('mouseover', function() {
     if($(voterRow).hasClass('hide-nav-row')) {
-        voterRow.removeClass("conceal-row").addClass("reveal-row");
-        voterRowBtn.addClass("tab-hovered");
+        voterRow.removeClass("conceal-row").addClass("reveal-row voter-color-bar");
+        voterRowBtn.addClass("tab-hovered voter-color");
     }else{
         voterRow.removeClass("reveal-row");
     }
@@ -81,8 +81,8 @@ $('#about-row-btn').on('mouseover', function() {
 
 $('#chat-row-btn').on('mouseover', function() {
     if($(chatRow).hasClass('hide-nav-row')) {
-        chatRow.removeClass("conceal-row").addClass("reveal-row");
-        chatRowBtn.addClass("tab-hovered");
+        chatRow.removeClass("conceal-row").addClass("reveal-row chat-color-bar");
+        chatRowBtn.addClass("tab-hovered chat-color");
     }else{
         chatRow.removeClass("reveal-row");
     }
@@ -171,7 +171,7 @@ $('.chat-btn').on("touchstart", function(e){
 // /Touch event to main nav buttons
 
 
-// Close all nav rows on touch event
+// Close all nav rows on touch event? This allows mouse to move over dropdown and maintain hover state
 function closeAllElse(row) {
     if(row != 'homeRow') {
         homeRowBtn.removeClass("tab-hovered"); // ********************************
@@ -179,17 +179,17 @@ function closeAllElse(row) {
     if(row != 'motorRow') {
         motorRow.addClass("conceal-row{");
         motorRow.removeClass("reveal-row");
-        motorRowBtn.removeClass("tab-hovered");
+        motorRowBtn.removeClass("tab-hovered mv-color");
     }
     if(row != 'legalRow') {
         legalRow.addClass("conceal-row{");
         legalRow.removeClass("reveal-row");
-        legalRowBtn.removeClass("tab-hovered");
+        legalRowBtn.removeClass("tab-hovered license-color");
     }
     if(row != 'voterRow') {
         voterRow.addClass("conceal-row{");
         voterRow.removeClass("reveal-row");
-        voterRowBtn.removeClass("tab-hovered");
+        voterRowBtn.removeClass("tab-hovered voter-color");
     }
     if(row != 'pubRow') {
         pubRow.addClass("conceal-row{");
@@ -202,7 +202,7 @@ function closeAllElse(row) {
     if(row != 'chatRow') {
         chatRow.addClass("conceal-row{");
         chatRow.removeClass("reveal-row");
-        chatRowBtn.removeClass("tab-hovered");
+        chatRowBtn.removeClass("tab-hovered chat-color");
     }
 }
 
@@ -221,6 +221,7 @@ function closeAll(this_instance) {
         voterRowBtn.removeClass("tab-hovered");
         pubRowBtn.removeClass("tab-hovered");
         chatRowBtn.removeClass("tab-hovered");
+        removeTabColors();
 }
 
 var rowWidth = document.querySelectorAll(".nav-row-width");
@@ -265,6 +266,13 @@ function overlayFadeOut() {
     $(".nav-container").removeClass("nav-container-reveal");
 }
 
+function removeTabColors(){
+    $(motorRowBtn).removeClass("mv-color");
+    $(legalRowBtn).removeClass("license-color");
+    $(voterRowBtn).removeClass("voter-color");
+    $(pubRowBtn).removeClass("pub-color");
+    $(chatRowBtn).removeClass("chat-color"); 
+}
 
 // Mobile view
 
