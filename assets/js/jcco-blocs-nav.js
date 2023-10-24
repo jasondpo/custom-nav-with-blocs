@@ -23,7 +23,9 @@ var homeRowBtn = $("#home-row-btn"), // ********************************
     aboutRowBtn = $(".about-btn"),
 
     chatRowBtn = $(".chat-btn"),
-    chatRow = $(".chat-row");
+    chatRow = $(".chat-row"),
+
+    navContainer = $(".nav-container");
 
 
 $("#home-row-btn").on('mouseover', function() { 
@@ -35,6 +37,10 @@ $('#mv-row-btn').on('mouseover', function() {
     if($(motorRow).hasClass('hide-nav-row')) {
         motorRow.removeClass("conceal-row").addClass("reveal-row mv-color-bar");
         motorRowBtn.addClass("tab-hovered mv-color");
+        removeNavBarColors();
+        if($(navContainer).hasClass('nav-container-scrolled')){ // Need to remove after scrolled back to top
+            navContainer.addClass("mv-color-container-bar"); 
+        }
     }else{
         motorRow.removeClass("reveal-row");
     }
@@ -45,6 +51,10 @@ $('#legal-row-btn').on('mouseover', function() {
     if($(legalRow).hasClass('hide-nav-row')) {
         legalRow.removeClass("conceal-row").addClass("reveal-row license-color-bar");
         legalRowBtn.addClass("tab-hovered license-color");
+        removeNavBarColors();
+        if($(navContainer).hasClass('nav-container-scrolled')){ 
+            navContainer.addClass("license-color-container-bar"); 
+        }
     }else{
         legalRow.removeClass("reveal-row license-color");
     }
@@ -55,6 +65,10 @@ $('#voter-row-btn').on('mouseover', function() {
     if($(voterRow).hasClass('hide-nav-row')) {
         voterRow.removeClass("conceal-row").addClass("reveal-row voter-color-bar");
         voterRowBtn.addClass("tab-hovered voter-color");
+        removeNavBarColors();
+        if($(navContainer).hasClass('nav-container-scrolled')){ 
+            navContainer.addClass("voter-color-container-bar"); 
+        }
     }else{
         voterRow.removeClass("reveal-row");
     }
@@ -83,6 +97,9 @@ $('#chat-row-btn').on('mouseover', function() {
     if($(chatRow).hasClass('hide-nav-row')) {
         chatRow.removeClass("conceal-row").addClass("reveal-row chat-color-bar");
         chatRowBtn.addClass("tab-hovered chat-color");
+        if($(navContainer).hasClass('nav-container-scrolled')){ // Need to remove after scrolled back to top
+            navContainer.addClass("chat-color-container-bar"); 
+        }
     }else{
         chatRow.removeClass("reveal-row");
     }
@@ -317,6 +334,7 @@ let yPos;
             $(".tab-nav-house-icon").addClass("dark-tab-text").removeClass("light-tab-text");
         }
         else if((yPos < 100) && (windowWidth > 768)){ 
+            removeNavBarColors();
             $(".nav-container").removeClass("nav-container-scrolled");
             $(".nav-main-tabs-list").removeClass("dark-tab-text").addClass("light-tab-text");
             $(".tab-nav-house-icon").removeClass("dark-tab-text").addClass("light-tab-text");
@@ -328,7 +346,12 @@ let yPos;
     })
   }
 
-
+  function removeNavBarColors(){
+    $(".nav-container").removeClass("mv-color-container-bar");
+    $(".nav-container").removeClass("license-color-container-bar");
+    $(".nav-container").removeClass("voter-color-container-bar");
+    $(".nav-container").removeClass("chat-color-container-bar");
+}
 
 
 // On focus

@@ -22,6 +22,36 @@
     --license-color-bar: linear-gradient(to bottom,var(--license-color) 0px,var(--license-color) 6px,var(--bkgColorNeutral) 7px,var(--bkgColorNeutral) 400px);
     --voter-color-bar:linear-gradient(to bottom,var(--voter-color) 0px,var(--voter-color) 6px,var(--bkgColorNeutral) 7px,var(--bkgColorNeutral) 400px);
     --chat-color-bar:linear-gradient(to bottom,var(--chat-color) 0px,var(--chat-color) 6px,var(--bkgColorNeutral) 7px,var(--bkgColorNeutral) 400px);
+
+    /* Nav Container */
+    --nav-container-mv-color-bar:
+        linear-gradient(to bottom,
+        var(--bkgColorNeutral) 0,
+        var(--bkgColorNeutral) 49px,
+        var(--mv-color) 50px,
+        var(--mv-color) 56px,
+        var(--bkgColorNeutral) 57px,
+        var(--bkgColorNeutral) 400px);
+
+    --nav-container-license-color-bar:
+        linear-gradient(to bottom,
+        var(--bkgColorNeutral) 0,
+        var(--bkgColorNeutral) 49px,
+        var(--license-color) 50px,
+        var(--license-color) 56px,
+        var(--bkgColorNeutral) 57px,
+        var(--bkgColorNeutral) 400px);
+
+    --nav-container-voter-color-bar:
+        linear-gradient(to bottom,
+        var(--bkgColorNeutral) 0,
+        var(--bkgColorNeutral) 49px,
+        var(--voter-color) 50px,
+        var(--voter-color) 56px,
+        var(--bkgColorNeutral) 57px,
+        var(--bkgColorNeutral) 400px);
+
+    /* --nav-container-chat-color-bar:; */
 }
 
 /** Global, but should be specific to this bloc **/
@@ -144,6 +174,19 @@
 .chat-color-bar{
     background: var(--chat-color-bar) !important;
 }
+
+/* Color bar for Nav Container*/
+.mv-color-container-bar{
+    background: var(--nav-container-mv-color-bar) !important;
+}
+.license-color-container-bar{
+    background: var(--nav-container-license-color-bar) !important;
+}
+.voter-color-container-bar{
+    background: var(--nav-container-voter-color-bar) !important;
+}
+
+
 
 
 .nav-container{
