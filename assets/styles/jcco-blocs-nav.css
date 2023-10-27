@@ -1,6 +1,8 @@
 :root{
     --blazer-red:#CF372C; /* Hovered links and active links */
     --sky-blue:#5C94F2;
+    --sky-blue-dark:#3884ef;
+    --sky-blue-darker:#3472c8;
     --tabTextColor:#444; /* Main Tabs Hovered */
     --dropdownLinkNormal:#555; /* Normal State */
     --dropdownLinkHover:#000; /* Normal State */
@@ -12,18 +14,20 @@
     --white:#fff;
 
     /*Topic colors*/
+    --generic-tab-color:var(--sky-blue-dark) !important; 
     --mv-color:#c0b376;
     --license-color:#29910d;
     --voter-color:#BF0e3f;
     --chat-color: #bbbbbb;
 
-    /*Dropdown Color Bars*/
+    /*Dropdown Color Bars Desktop*/
     --mv-color-bar: linear-gradient(to bottom,var(--mv-color) 0px,var(--mv-color) 6px,var(--bkgColorNeutral) 7px,var(--bkgColorNeutral) 400px);
     --license-color-bar: linear-gradient(to bottom,var(--license-color) 0px,var(--license-color) 6px,var(--bkgColorNeutral) 7px,var(--bkgColorNeutral) 400px);
     --voter-color-bar:linear-gradient(to bottom,var(--voter-color) 0px,var(--voter-color) 6px,var(--bkgColorNeutral) 7px,var(--bkgColorNeutral) 400px);
     --chat-color-bar:linear-gradient(to bottom,var(--chat-color) 0px,var(--chat-color) 6px,var(--bkgColorNeutral) 7px,var(--bkgColorNeutral) 400px);
+    
 
-    /* Nav Container */
+    /* Nav Container Color Bars */
     --nav-container-mv-color-bar:
         linear-gradient(to bottom,
         var(--bkgColorNeutral) 0,
@@ -51,7 +55,14 @@
         var(--bkgColorNeutral) 57px,
         var(--bkgColorNeutral) 400px);
 
-    /* --nav-container-chat-color-bar:; */
+    --nav-container-chat-color-bar:
+        linear-gradient(to bottom,
+        var(--bkgColorNeutral) 0,
+        var(--bkgColorNeutral) 49px,
+        var(--chat-color) 50px,
+        var(--chat-color) 56px,
+        var(--bkgColorNeutral) 57px,
+        var(--bkgColorNeutral) 400px);
 }
 
 /** Global, but should be specific to this bloc **/
@@ -75,6 +86,9 @@
 
 /*** Tabs ***/
 
+.generic-color{
+    background-color: var(--generic-tab-color) !important;
+}
 .mv-color{
     background-color: var(--mv-color) !important;
 }
@@ -124,6 +138,10 @@
     border-top-left-radius: 4px; 
 }
 
+.tab-hovered.home-btn, .tab-hovered.about-btn{
+    border-radius: 4px !important;
+}
+
 .tab-hovered .ion-android-arrow-dropdown{
     transform: rotate(180deg);
 }
@@ -154,15 +172,15 @@
     display: inline-block;
     border-bottom: 1px solid var(--white);
 }
-.nav-tab-btn-text, .icon-sm{
+.nav-tab-btn-text, .icon-sm, .tab-nav-house-icon{
     pointer-events: none;
 }
 /*** /Tabs ***/
 
 
 
-/*** Dropdowns ***/
-.mv-color-bar{
+/*** Dropdowns Desktop - See also mobile state ***/
+.mv-color-bar{ /* Make opacity 0 for mobile */
     background: var(--mv-color-bar) !important;
 }
 .license-color-bar{
@@ -186,6 +204,9 @@
     background: var(--nav-container-voter-color-bar) !important;
 }
 
+.chat-color-container-bar{
+    background: var(--nav-container-chat-color-bar) !important;
+}
 
 
 
@@ -233,13 +254,14 @@
     background-color: var(--bkgColorNeutral) !important;
 }
 
-/* Change to square for scrolled and mobile*/
-.mv-row, 
-.legal-row, 
-.voter-row, 
-.pub-row, 
-.chat-row{ 
+.nav-row-width{
     border-radius: 4px;
+}
+.nav-row-width:last-child{
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-left-radius: 4px;
 }
 /*** /Dropdowns ***/
 
@@ -319,15 +341,19 @@
         box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.2) 0px 1px 2px;
         position: fixed;
         top:0;
-        background: linear-gradient(to bottom,white 0px,white 50px,#EAEAEA 51px,#EAEAEA 400px);
+        background: linear-gradient(to bottom,var(--white) 0px,var(--white) 50px,#EAEAEA 51px,#EAEAEA 400px);
     }
+    /* Use this to "square" all rounded corners */
     .nav-container-scrolled .mv-row, 
     .nav-container-scrolled .legal-row, 
     .nav-container-scrolled .voter-row,  
     .nav-container-scrolled .pub-row,  
-    .nav-container-scrolled .chat-row{ 
-        border-radius: 0;
-    }
+    .nav-container-scrolled .chat-row, 
+    .nav-container-scrolled .tab-hovered.home-btn,
+    .nav-container-scrolled .tab-hovered.about-btn{ 
+        border-radius: 0 !important;
+    }    
+    
     .nav-container-scrolled .tab-hovered{ 
         border-top-right-radius: 0;
         border-top-left-radius: 0; 
@@ -339,13 +365,26 @@
     .nav-container{
         overflow:initial !important;
     }
+    /* Use this to "square" all rounded corners */
+    .nav-row-width, .nav-tab-btn, .tab-hovered.home-btn, .tab-hovered.about-btn{ 
+        border-radius: 0 !important;
+    }  
+
     .nav-row-width{ 
         background-color: var(--sky-blue) !important;
-        border-top: 1px solid var(--bkgColorNeutral) !important;
+        border-top: 1px solid var(--sky-blue-darker) !important;
         width: calc(100% - 23px) !important;
     }
+    
+    .mv-color-bar, .license-color-bar, .voter-color-bar, .chat-color-bar{ /* Make opacity 0 for mobile */
+        background: var(--sky-blue) !important;
+    }
+    .tab-col-list-col ul li{
+        margin-bottom: 20px;
+    }
+
     .tab-col-list-col ul li p a{
-        color: white !important;
+        color: var(--white) !important;
     }
     .nav-main-tabs-list{
         box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px !important;
@@ -359,14 +398,14 @@
         background-color: var(--sky-blue) !important;
     }
     .tab-hovered p, .tab-hovered .tab-down-arrow{
-        color: white !important;
+        color: var(--white) !important;
     }
 
 
     .nav-tab-btn:hover p, 
     .nav-tab-btn:hover .tab-down-arrow, 
     .nav-tab-btn:hover .tab-nav-house-icon{
-        color:white !important;
+        color:var(--white) !important;
     }
     .tab-nav-house-icon{
         color:var(--tabTextColor);
@@ -384,7 +423,7 @@
         background-color: var(--blazer-red);
     }
     .active-tab .tab-down-arrow{
-        color: white !important;
+        color: var(--white) !important;
     }
     .mobile-btn-row{ /* Absolute fixed below 767 always */
         position: absolute !important;
@@ -408,6 +447,8 @@
     .chat-row{
         top:390px;
     }
+
+    
 }
 
 

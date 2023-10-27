@@ -1,35 +1,59 @@
 /* 
-    • Add Color coding to nav tabs
+    • Imporove code organization
+    • Add Color coding to nav tabs (Resolved for desktop)
     • Fix tabbing  
     • Add Headers over columns
     • Allow content to push down when nav is open
 */
 
 
-var homeRowBtn = $("#home-row-btn"), // ********************************
+/* Initiation */
+    var homeRowBtn = $(".home-btn"), 
 
-    motorRowBtn = $("#mv-row-btn"),
-    motorRow = $("#mv-row"),
+        aboutRowBtn = $(".about-btn"),
 
-    legalRowBtn = $(".legal-btn"),
-    legalRow = $(".legal-row"),
+        motorRowBtn = $("#mv-row-btn"),
+        motorRow = $("#mv-row"),
 
-    voterRowBtn = $(".voter-btn"),
-    voterRow = $(".voter-row"),
+        legalRowBtn = $(".legal-btn"),
+        legalRow = $(".legal-row"),
 
-    pubRowBtn = $(".pub-btn"),
-    pubRow = $(".pub-row"),
+        voterRowBtn = $(".voter-btn"),
+        voterRow = $(".voter-row"),
 
-    aboutRowBtn = $(".about-btn"),
+        pubRowBtn = $(".pub-btn"),
+        pubRow = $(".pub-row"),
 
-    chatRowBtn = $(".chat-btn"),
-    chatRow = $(".chat-row"),
 
-    navContainer = $(".nav-container");
+        chatRowBtn = $(".chat-btn"),
+        chatRow = $(".chat-row"),
+
+        navContainer = $(".nav-container");
+/* /Initiation */
+
+
+
+/*  NOT Scrolled Desktop */
+/* /NOT Scrolled Desktop */
+
+/*  Scrolled Desktop */
+/* /Scrolled Desktop */
+
+/*  NOT Scrolled Mobile */
+/* /NOT Scrolled Mobile */
+
+/*  Scrolled Mobile */
+/* /Scrolled Mobile */
+
+/* Reset Functions */
+
+/* /Reset Functions */
+
 
 
 $("#home-row-btn").on('mouseover', function() { 
-    $(homeRowBtn).addClass("tab-hovered"); // ********************************
+    $(homeRowBtn).addClass("tab-hovered"); 
+    homeRowBtn.addClass("tab-hovered generic-color");
     closeAllElse('homeRow');
 });    
 
@@ -75,28 +99,34 @@ $('#voter-row-btn').on('mouseover', function() {
     closeAllElse('voterRow');
 });
 
-
 $('#pub-row-btn').on('mouseover', function() {
     if($(pubRow).hasClass('hide-nav-row')) {
         pubRow.removeClass("conceal-row").addClass("reveal-row");
         pubRowBtn.addClass("tab-hovered");
+        removeNavBarColors();
     }else{
         pubRow.removeClass("reveal-row");
     }
     closeAllElse('pubRow');
 });
 
-
-$('#about-row-btn').on('mouseover', function() {
-    aboutRowBtn.addClass("tab-hovered");
-    closeAllElse('aboutRow');
+$('#home-row-btn').on('mouseover', function() {
+    homeRowBtn.addClass("tab-hovered generic-color");
+    closeAllElse('homeRow');
+    removeNavBarColors();
 });
 
+$('#about-row-btn').on('mouseover', function() {
+    aboutRowBtn.addClass("tab-hovered generic-color");
+    closeAllElse('aboutRow');
+    removeNavBarColors();
+});
 
 $('#chat-row-btn').on('mouseover', function() {
     if($(chatRow).hasClass('hide-nav-row')) {
         chatRow.removeClass("conceal-row").addClass("reveal-row chat-color-bar");
         chatRowBtn.addClass("tab-hovered chat-color");
+        removeNavBarColors();
         if($(navContainer).hasClass('nav-container-scrolled')){ // Need to remove after scrolled back to top
             navContainer.addClass("chat-color-container-bar"); 
         }
@@ -172,7 +202,6 @@ $('.about-btn').on("touchstart", function(e){
 });
 
 
-
 $('.chat-btn').on("touchstart", function(e){
     e.preventDefault();
     if(!$(chatRow).hasClass('reveal-row')) { 
@@ -191,7 +220,7 @@ $('.chat-btn').on("touchstart", function(e){
 // Close all nav rows on touch event? This allows mouse to move over dropdown and maintain hover state
 function closeAllElse(row) {
     if(row != 'homeRow') {
-        homeRowBtn.removeClass("tab-hovered"); // ********************************
+        homeRowBtn.removeClass("tab-hovered"); 
     }
     if(row != 'motorRow') {
         motorRow.addClass("conceal-row{");
@@ -225,14 +254,15 @@ function closeAllElse(row) {
 
 function closeAll(this_instance) {
     if(this_instance == 'tabbing'){
-        homeRowBtn.removeClass("tab-hovered"); // Need for tabbing only
-        aboutRowBtn.removeClass("tab-hovered"); // Need for tabbing only
+        homeRowBtn.removeClass("tab-hovered"); 
+        aboutRowBtn.removeClass("tab-hovered"); 
     }
         motorRow.removeClass("reveal-row");
         legalRow.removeClass("reveal-row");
         voterRow.removeClass("reveal-row");
         pubRow.removeClass("reveal-row");
         chatRow.removeClass("reveal-row");
+        
         motorRowBtn.removeClass("tab-hovered");
         legalRowBtn.removeClass("tab-hovered");
         voterRowBtn.removeClass("tab-hovered");
@@ -268,8 +298,8 @@ $(".overlay-on").on('mouseleave', (event) => {
 
 $("#home-row-btn, #about-row-btn").on('mouseleave', (event) => {
     setTimeout(()=>{
-        $(homeRowBtn).removeClass("tab-hovered");
-        $(aboutRowBtn).removeClass("tab-hovered");
+        $(homeRowBtn).removeClass("tab-hovered generic-color");
+        $(aboutRowBtn).removeClass("tab-hovered generic-color");
     }, delayFadeOut);
 });
 
@@ -304,7 +334,7 @@ $('.mobile-menu-btn').click(function(){
 
 let yPos;
   
-  window.addEventListener('scroll', throttle(callback, 1000));
+  window.addEventListener('scroll', throttle(pageScrolled, 1000));
   
   function throttle(fn, wait) {
     var time = Date.now();
@@ -325,7 +355,7 @@ let yPos;
     }
   }
   
-  function callback() {
+  function pageScrolled() {
     $(window).scroll((e)=>{
         yPos = window.scrollY;
         if((yPos > 100) && (windowWidth > 768)){
@@ -365,6 +395,9 @@ $(".nav-tab-btn").on("focus", function(){
         closeAll('tabbing');
         if(!$(this).removeClass("tab-hovered"));
         $(this).addClass("tab-hovered");
+        if($(this).hasClass("home-btn")){
+            homeRow.removeClass("conceal-row").addClass("reveal-row");
+        }
         if($(this).hasClass("motor-vehicle-btn")){
             motorRow.removeClass("conceal-row").addClass("reveal-row");
         }
